@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <h2>1、双大括号表达式</h2>
+        <p>{{msg}}</p>
+        <!-- 字符串转大写 -->
+        <p>{{msg.toUpperCase()}}</p>
+        <!--
+            v-html与v-text功能类似，但不同的是，v-html能够识别字符串中的html标签
+        -->
+        <p v-html="msg"></p>
+        <p v-text="msg"></p>
+        <hr>
+        <h2>2、指令一:强制数据绑定</h2>
+        <!--
+            v-bind:xxx 能够将普通的html属性转为表达式
+            也可以简写成 :xxx
+        -->
+        <img v-bind:src="imgUrl" style="width: 50px;height: 50px">
+        <img :src="imgUrl" style="width: 50px;height: 50px">
+        <hr>
+        <h2>3、指令二:绑定事件监听</h2>
+        <!--
+            v-on:xxx能够对当前元素进行事件绑定，值为回调函数名
+            也可以简写成  @click
+            在函数名后加上()可以传递参数
+        -->
+        <button v-on:click="test">这是一个按钮</button>
+        <button @click="test">这是一个按钮</button>
+        <!-- 可以将Vue实例中的数据作为参数传递 -->
+        <button @click="test2(msg)">这是一个按钮</button>
+    </div>
+
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'<a href="#">www.baidu.com</a>',
+                imgUrl:'https://cn.vuejs.org/images/logo.png'
+            },
+            methods:{
+                test() {
+                    alert('点击事件触发')
+                },
+                test2(str){
+                    alert(str)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
