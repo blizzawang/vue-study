@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        姓:<input type="text" placeholder="姓氏" v-model="firstName"><br>
+        名:<input type="text" placeholder="名字" v-model="lastName"><br>
+        姓名1(单向):<input type="text" placeholder="姓名1" v-model="fullName1"><br>
+        姓名2(单向):<input type="text" placeholder="姓名2" v-model="fullName2"><br>
+        姓名3(双向):<input type="text" placeholder="姓名3" v-model="fullName3">
+    </div>
+
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+    <script>
+        const vue = new Vue({
+            el:'#app',
+            data:{
+                firstName:'A',
+                lastName:'B',
+                fullName1:'A B',
+                fullName2:'A B'
+            },
+            /* 计算属性 */
+            computed:{
+                fullName1(){
+                    return this.firstName + ' ' + this.lastName
+                }
+            },
+            /* 监视 */
+            watch:{
+                /* 当firstName属性值发生改变调用此函数 */
+                firstName: function (value){
+                    this.fullName2 = value + ' ' + this.lastName
+                },
+                lastName: function (value){
+                    this.fullName2 = this.firstName + ' ' + value
+                }
+            }
+        })
+    </script>
+</body>
+</html>
