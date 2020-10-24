@@ -29,6 +29,18 @@
             computed:{
                 fullName1(){
                     return this.firstName + ' ' + this.lastName
+                },
+                fullName3:{
+                    /* 计算属性 */
+                    get(){
+                        return this.firstName + ' ' + this.lastName
+                    },
+                    /* 当属性发生改变时被调用 */
+                    set(value){
+                        const names = value.split(' ')
+                        this.firstName = names[0]
+                        this.lastName = names[1]
+                    }
                 }
             },
             /* 监视 */

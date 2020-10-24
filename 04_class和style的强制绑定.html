@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        .aClass{
+            color: red;
+        }
+        .bClass{
+            color: blue;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="app">
+        <p :class="testClass">class的绑定</p>
+        <p :class="{aClass:isA,bClass:isB}">class的绑定</p>
+        <p :style="{color:activeColor,fontSize:size}">style的绑定</p>
+        <button @click="update">更新</button>
+    </div>
+
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+    <script>
+        const vue = new Vue({
+            el:'#app',
+            data:{
+                testClass:'aClass',
+                isA:true,
+                isB:false,
+                activeColor:'pink',
+                size:'20px'
+            },
+            methods:{
+                update(){
+                    this.testClass = 'bClass'
+                    this.isB = true
+                    this.activeColor = 'skyblue'
+                    this.size = '30px'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
