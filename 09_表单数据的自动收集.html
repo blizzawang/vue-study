@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <form action="#" @submit.prevent="handleSubmit">
+            <span>用户名:</span>
+            <input type="text" v-model="username"><br>
+
+            <span>密码:</span>
+            <input type="password" v-model="password"><br>
+
+            <span>性别:</span>
+            <input type="radio" id="female" value="女" v-model="sex">
+            <label for="female">女</label>
+            <input type="radio" id="male" value="男" v-model="sex">
+            <label for="male">男</label><br>
+
+            <span>爱好:</span>
+            <input type="checkbox" id="basketball" value="basketball" v-model="likes">
+            <label for="basketball">篮球</label>
+            <input type="checkbox" id="football" value="football" v-model="likes">
+            <label for="football">足球</label>
+            <input type="checkbox" id="pingpong" value="pingpong" v-model="likes">
+            <label for="pingpong">乒乓球</label><br>
+
+            <span>城市:</span>
+            <select v-model="cityId">
+                <option value="">未选择</option>
+                <option :value="c.id" v-for="(c,index) in citys">
+                    {{c.name}}
+                </option>
+            </select><br>
+
+            <textarea rows="10" v-model="description"></textarea><br>
+
+            <input type="submit" value="注册">
+        </form>
+    </div>
+
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+    <script>
+        const vue = new Vue({
+            el:'#app',
+            data:{
+                username:'',
+                password:'',
+                /* 当属性中有数据时对应的按钮会被选中 */
+                sex:'女',
+                likes:['basketball'],
+                citys:[
+                    {id:1,name:'北京'},
+                    {id:2,name:'上海'},
+                    {id:3,name:'广州'},
+                    {id:4,name:'深圳'},
+                    {id:5,name:'杭州'}
+                ],
+                cityId:'',
+                description:''
+            },
+            methods:{
+                handleSubmit(){
+                    console.log(this.username,this.password,this.sex,this.likes,this.cityId,this.description)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
