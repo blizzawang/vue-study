@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <p v-if="status">Success!</p>
+        <p v-else>Fail!</p>
+
+        <p v-show="status">成功!</p>
+        <p v-show="!status">失败!</p>
+
+        <button @click="update">更新</button>
+    </div>
+
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+    <script>
+        const vue = new Vue({
+            el:'#app',
+            data:{
+                status:false
+            },
+            methods:{
+                update(){
+                    this.status = !this.status
+                }
+            }
+        })
+    </script>
+</body>
+</html>

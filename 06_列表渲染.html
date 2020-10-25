@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <h2>v-for遍历数组</h2>
+        <ul>
+            <li v-for="(p,index) in persons" :key="index">
+                {{index}} --- {{p.name}} --- {{p.age}}
+                ---<button @click="deletePerson(index)">删除</button>
+                name:<input type="text" v-model="name">
+                age:<input type="text" v-model="age">
+                ---<button @click="updatePerson(index)">更新</button>
+            </li>
+        </ul>
+        <h2>v-for遍历对象</h2>
+        <ul>
+            <li v-for="(value,key) in persons[0]">
+                {{key}} --- {{value}}
+            </li>
+        </ul>
+    </div>
+
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+    <script>
+        const vue = new Vue({
+            el:'#app',
+            data:{
+                persons:[
+                    {name:'zs',age:18},
+                    {name:'ls',age:19},
+                    {name:'ww',age:20},
+                    {name:'zl',age:21}
+                ],
+                name:'',
+                age:''
+            },
+            methods:{
+                deletePerson(index){
+                    this.persons.splice(index,1)
+                },
+                updatePerson(index){
+                    this.persons[index].name = this.name
+                    this.persons[index].age = this.age
+                }
+            }
+        })
+    </script>
+</body>
+</html>
